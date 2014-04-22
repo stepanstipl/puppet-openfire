@@ -1,0 +1,28 @@
+# Set this to the path where openfire lives.
+# If this is not set the script will look for /usr/local/openfire, then
+# /opt/openfire.
+<% if @home %>OPENFIRE_HOME="<%= @home -%>"<% end -%>
+
+# If there is a different user you would like to run openfire as,
+# change the following line.
+<% if @user %>OPENFIRE_USER="<%= @user -%>"<% end -%>
+
+# If you wish to change the location of the openfire pid file,
+# change the following line.
+<% if @pidfile %>OPENFIRE_PIDFILE="<%= @pidfile -%>"<% end -%>
+
+# If you wish to explictly specific the location of the log directory,
+# you can set it here.  Note that this applies to the logs generated outside
+# openfire itself.  If you want to change the location of openfire's own
+# logs, see the system property 'log.directory'.  If this is not set,
+# it will default to $OPENFIRE_HOME/logs.
+<% if @logdir %>OPENFIRE_LOGDIR="<%= @logdir -%>"<% end -%>
+
+# If you wish to set any specific options to pass to the JVM, you can
+# set them with the following variable.
+<% if @my_java_opts %>OPENFIRE_OPTS="<%= @my_java_opts -%>"<% end -%>
+
+# If you wish to override the auto-detected JAVA_HOME variable, uncomment
+# and change the following line.
+<% if @java_home %>JAVA_HOME="<%= @java_home -%>"<% end -%>
+
