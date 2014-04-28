@@ -8,3 +8,4 @@ description 'This module will install and configure Openfire'
 project_page 'https://github.com/stepanstipl/puppet-openfire'
 
 dependency 'puppetlabs/stdlib', '>= 4.0.0'
+dependency 'puppetlabs/java', '>= 1.0.0'

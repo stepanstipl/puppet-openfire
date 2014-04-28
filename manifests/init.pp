@@ -1,40 +1,92 @@
 # == Class: openfire
 #
-# Full description of class openfire here.
+# Main class for openfire module
+# Simplest usage is just by `include openfire`
 #
 # === Parameters
 #
-# Document parameters here.
+# [*service_manage*]
+# True/false. If set to true (default), module will ensure openfire
+# service is enabled and running.
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*service_enable*]
+# What the module passes to service - enable (defaults to true).
 #
-# === Variables
+# [*service_ensure*]
+# What the module passes to service - ensure (defaults to true).
 #
-# Here you should define a list of variables that this module would require.
+# [*install_glibc*]
+# Whether the module should try to install glibc, which is needed by
+# bundled java jre version (defaults to true).
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
+# [*install_java*]
+# Whether the module should try to install java, if enabled Puppetlab's
+# java module will have to be installed. Defaults to false, as jre bundled
+# within RPM package is prefered. 
+#
+# [*java_xms*]
+# Size of initial memory allocation passed to JVM. Defaults to `256m`.
+#
+# [*java_xmx*]
+# Size of maximum memory allocation passed to JVM. Defaults to `512m`.
+#
+# [*java_opts*]
+# Any additional options that should be passed to JVM. Defaults to ``.
+#
+# [*java_home*]
+# Java home directory passed to init script, by default we try to use one
+# bundled with RPM package which is located in `/opt/openfire/jre`.
+# Defaults to ``.
+#
+# [*java_keystore*]
+# Path to the file containing java keystore, in case you want to use custom
+# certificates. Default to ``.
+#
+# [*package_name*]
+# Name of the package to be installed. Defaults to 'openfire'.
+#
+# [*package_version*]
+# Version of the package to be installed, defaults to 'latest'.
+#
+# [*ensure*]
+# Value that will be passed to package ensure (defaults to `present`).
+#
+# [*home*]
+# Vaule put into sysconfig file of openfire install dir.
+# Default is '/opt/openfire'.
+#
+# [*user*]
+# User that the JVM should be run as, defaults to `daemon`.
+#
+# [*group*]
+# Group that the JVM should be run as, defaults to `daemon`.
+#
+# [*pidfile*]
+# Path to the pid file. Defaults to '/var/run/openfire.pid'.
+#
+# [*logdir*]
+# Where should the log files be sotred, default is '/var/log/openfire'.
 #
 # === Examples
-#
-#  class { openfire:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
+# Simplest usage is just by including the class itself `include openfire`,
+# 
+# For more oprions use parametrised class like:
+# class {'::openfire':
+#   java_ks => '/usr/local/keys/openfire/keystore',
+#   java_xms => '128m',
+#   java_xmx => '1024m',
+#   version => '3.9.1-1'
+# }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Stepan Stipl <stepan@stipl.net>
 #
 # === Copyright
 #
-# Copyright 2014 Your name here, unless otherwise noted.
+# Copyright 2014 Stepan Stipl
 #
+
 class openfire (
   $ensure          = $openfire::params::ensure,
   $home            = $openfire::params::home,
