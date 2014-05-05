@@ -35,68 +35,86 @@ class {'::openfire':
 Reference
 ---------
 
-=== Parameters
+### Parameters
 
-[*service_manage*]
-True/false. If set to true (default), module will ensure openfire
+####`service_manage`
+
+If set to 'true ' (default), module will ensure openfire
 service is enabled and running.
 
-[*service_enable*]
+####`service_enable`
+
 What the module passes to service - enable (defaults to true).
 
-[*service_ensure*]
+####`service_ensure`
+
 What the module passes to service - ensure (defaults to true).
 
-[*install_glibc*]
+####`install_glibc`
+
 Whether the module should try to install glibc, which is needed by
 bundled java jre version (defaults to true).
 
-[*install_java*]
+####`install_java`
+
 Whether the module should try to install java, if enabled Puppetlab's
 java module will have to be installed. Defaults to false, as jre bundled
 within RPM package is prefered.
 
-[*java_xms*]
+####`java_xms`
+
 Size of initial memory allocation passed to JVM. Defaults to `256m`.
 
-[*java_xmx*]
+####`java_xmx`
+
 Size of maximum memory allocation passed to JVM. Defaults to `512m`.
 
-[*java_opts*]
+####`java_opts`
+
 Any additional options that should be passed to JVM. Defaults to ``.
 
-[*java_home*]
+####`java_home`
+
 Java home directory passed to init script, by default we try to use one
 bundled with RPM package which is located in `/opt/openfire/jre`.
 Defaults to ``.
 
-[*java_keystore*]
+####`java_keystore`
+
 Path to the file containing java keystore, in case you want to use custom
 certificates. Default to ``.
 
-[*package_name*]
+####`package_name`
+
 Name of the package to be installed. Defaults to 'openfire'.
 
-[*package_version*]
+####`package_version`
+
 Version of the package to be installed, defaults to 'latest'.
 
-[*ensure*]
+####`ensure`
+
 Value that will be passed to package ensure (defaults to `present`).
 
-[*home*]
+####`home`
+
 Vaule put into sysconfig file of openfire install dir.
 Default is '/opt/openfire'.
 
-[*user*]
+####`user`
+
 User that the JVM should be run as, defaults to `daemon`.
 
-[*group*]
+####`group`
+
 Group that the JVM should be run as, defaults to `daemon`.
 
-[*pidfile*]
+####`pidfile`
+
 Path to the pid file. Defaults to '/var/run/openfire.pid'.
 
-[*logdir*]
+####`logdir`
+
 Where should the log files be sotred, default is '/var/log/openfire'.
 
 
