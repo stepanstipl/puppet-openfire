@@ -1,0 +1,53 @@
+puppet-openfire
+===============
+
+Puppet module for installing and configuring Openfire jabber server
+
+Simplest usage:
+`include openfire`
+
+See manifests/params.pp for more configuration details.
+
+Requirements
+------------
+- Tested on RHEL/CentOS 6
+
+Setup
+-----
+This module will install openfire, using system package manager. It's tested and expected to work with RHEL/CentOS 6, yum package manger and official RPM package from http://www.igniterealtime.org/. Module will also try to install javam, if '$install_java' is enabled (default is disabled, as there's java bundled within the RPM package) and also glibc, as it's needed by the bundled java version. See below list of parameters for available options.
+
+Usage
+-----
+- Make sure you have puppetlabs stdlib module installed.
+- Make sure you have puppetlabs java module installed, if you set `$install_java` to true.
+- Make sure there's openfire package (RPM) present in your system repositories
+*Currently the module does not support direct download of packages, please open a ticket if you woule be interested in that feature.*
+- Simple use is just by including the class by `include openfire` in your manifest, for more options use parametrised class and see available options below.
+```
+class {'::openfire':
+  java_ks => '/usr/local/keys/openfire/keystore',
+  java_xms => '128m',
+  java_xmx => '1024m',
+  version => '3.9.1-1'
+}
+```
+
+Reference
+---------
+<%= @doc_classes %>
+
+Limitations
+-----------
+- This module has never been tested, and is not really expected to work, on other systems than RHEL/CentOS 6 family
+- This module expects openfire package to be present in system pcakage management tool (yum)
+
+FAQ, Support & Development
+--------------------------
+Feek free to fork the module and extend it in any way, any pull requests will be welcome. Also let me know in case you're interested in some functionality.
+Please use Github's Issues for any communication & bug reporting.
+
+TODO
+----
+- better passing of args to java class
+- proper modulefile & release to Puppet Forge
+- tests

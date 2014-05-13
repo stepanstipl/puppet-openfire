@@ -1,91 +1,131 @@
-# == Class: openfire
+# # Class: openfire
 #
 # Main class for openfire module
 # Simplest usage is just by `include openfire`
 #
-# === Parameters
+# ## Parameters
 #
-# [*service_manage*]
-# True/false. If set to true (default), module will ensure openfire
-# service is enabled and running.
+# ### service_manage
+# - default: true
+# - options: true, false
+# If set to true (default), module will ensure openfire service is enabled
+# and running.
 #
-# [*service_enable*]
-# What the module passes to service - enable (defaults to true).
+# ### service_enable
+# - default: true
+# - options: true, false, manual
+# What the module passes to openfire service:enable.
 #
-# [*service_ensure*]
-# What the module passes to service - ensure (defaults to true).
+# ### service_ensure
+# - default: present
+# - options: present, false (running, stopped)
+# What the module passes to openfire service:ensure.
 #
-# [*install_glibc*]
+# ### install_glibc
+# - default: true
+# - options: true, false
 # Whether the module should try to install glibc, which is needed by
-# bundled java jre version (defaults to true).
+# bundled java jre version.
 #
-# [*install_java*]
-# Whether the module should try to install java, if enabled Puppetlab's
+# ### install_java
+# - default: true
+# - options: true, false
+# Whether the module should try to install java, if enabled, Puppetlab's
 # java module will have to be installed. Defaults to false, as jre bundled
 # within RPM package is prefered. 
 #
-# [*java_xms*]
-# Size of initial memory allocation passed to JVM. Defaults to `256m`.
+# ### java_xms
+# - default: 256m
+# - options: <size>[g|G|m|M|k|K]
+# Size of initial memory allocation passed to JVM.
 #
-# [*java_xmx*]
-# Size of maximum memory allocation passed to JVM. Defaults to `512m`.
+# ### java_xmx
+# - default: 512m
+# - options: <size>[g|G|m|M|k|K]
+# Size of maximum memory allocation passed to JVM.
 #
-# [*java_opts*]
-# Any additional options that should be passed to JVM. Defaults to ``.
+# ### java_opts
+# - default:
+# - options: String
+# Any additional options that should be passed to JVM. These will simply
+# be appended to command line, so for typical java opt they have to include
+# `-X` such as `-XlargePages`.
 #
-# [*java_home*]
-# Java home directory passed to init script, by default we try to use one
-# bundled with RPM package which is located in `/opt/openfire/jre`.
-# Defaults to ``.
+# ### java_home
+# - default: 
+# - options: absolute path in the filesystem
+# Java home directory passed to init script, by default it's empty and
+# init script tries to use one bundled with RPM package which is located in 
+# `/opt/openfire/jre`.
 #
-# [*java_keystore*]
+# ### java_keystore
+# - default:
+# - options: absolute path in the filesystem
 # Path to the file containing java keystore, in case you want to use custom
 # certificates. Default to ``.
 #
-# [*package_name*]
-# Name of the package to be installed. Defaults to 'openfire'.
+# ### package_name
+# - default: openfire
+# - options: String
+# Name of the package to be installed.
 #
-# [*package_version*]
+# ### package_version
+# - default: latest
+# - options: latest, String
 # Version of the package to be installed, defaults to 'latest'.
 #
-# [*ensure*]
-# Value that will be passed to package ensure (defaults to `present`).
+# ### ensure
+# - default: present
+# - options: present, absent
+# If set to absent, module will try to cleanup after itself and removed 
+# any resources installed.
+# created on the system.
 #
-# [*home*]
-# Vaule put into sysconfig file of openfire install dir.
-# Default is '/opt/openfire'.
+# ### home
+# - default: /opt/openfire
+# - options: absolute path in the filesystem
+# Value put into openfire sysconfig, pointing install location.
 #
-# [*user*]
-# User that the JVM should be run as, defaults to `daemon`.
+# ### user
+# - default: daemon
+# - options: String
+# User that the JVM should be run as.
 #
-# [*group*]
-# Group that the JVM should be run as, defaults to `daemon`.
+# ### group
+# - default: daemon
+# - options: String
+# Group that the JVM should be run as.
 #
-# [*pidfile*]
-# Path to the pid file. Defaults to '/var/run/openfire.pid'.
+# ### pidfile
+# - default: /var/run/openfire.pid
+# - options: absolute path in the filesystem
+# Path where the pid file should be located.
 #
-# [*logdir*]
-# Where should the log files be sotred, default is '/var/log/openfire'.
+# ### logdir
+# - default: /var/log/openfire
+# - options: absolute path in the filesystem
+# Path to directory where should the log files be stored.
 #
-# === Examples
-# Simplest usage is just by including the class itself `include openfire`,
-# 
+# ## Examples:
+#
+# Simplest usage is just by including the class itself:
+# `include openfire`.
+#
 # For more oprions use parametrised class like:
-# class {'::openfire':
+# ```class {'::openfire':
 #   java_ks => '/usr/local/keys/openfire/keystore',
 #   java_xms => '128m',
 #   java_xmx => '1024m',
 #   version => '3.9.1-1'
-# }
+# }```
 #
-# === Authors
+# ## Authors
 #
 # Stepan Stipl <stepan@stipl.net>
 #
-# === Copyright
+# ## Copyright
 #
 # Copyright 2014 Stepan Stipl
-#
 
 class openfire (
   $ensure          = $openfire::params::ensure,
@@ -107,9 +147,9 @@ class openfire (
   $service_ensure  = $openfire::params::service_ensure,
   $user            = $openfire::params::user,
   $group            = $openfire::params::group,
-  
+ 
 ) inherits openfire::params {
-  
+ 
   validate_bool($service_manage)
   validate_bool($service_enable)
   validate_bool($install_java)
