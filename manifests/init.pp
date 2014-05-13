@@ -112,12 +112,14 @@
 # `include openfire`.
 #
 # For more oprions use parametrised class like:
-# ```class {'::openfire':
+# ```
+# class {'::openfire':
 #   java_ks => '/usr/local/keys/openfire/keystore',
 #   java_xms => '128m',
 #   java_xmx => '1024m',
 #   version => '3.9.1-1'
-# }```
+# }
+# ```
 #
 # ## Authors
 #
