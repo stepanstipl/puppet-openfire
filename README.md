@@ -14,7 +14,7 @@ Requirements
 
 Setup
 -----
-This module will install openfire, using system package manager. It's tested and expected to work with RHEL/CentOS 6, yum package manger and official RPM package from http://www.igniterealtime.org/. Module will also try to install javam, if '$install_java' is enabled (default is disabled, as there's java bundled within the RPM package) and also glibc, as it's needed by the bundled java version. See below list of parameters for available options.
+This module will install openfire, using system package manager. It's tested and expected to work with RHEL/CentOS 6, yum package manger and official RPM package from http://www.igniterealtime.org/. Module will also try to install java, if '$install_java' is enabled (default is disabled, as there's java bundled within the RPM package) and also glibc, as it's needed by the bundled java version. See below list of parameters for available options.
 
 Usage
 -----
@@ -136,11 +136,11 @@ For more oprions use parametrised class like:
 Limitations
 -----------
 - This module has never been tested, and is not really expected to work, on other systems than RHEL/CentOS 6 family
-- This module expects openfire package to be present in system pcakage management tool (yum)
+- This module expects openfire package to be present in system package management tool (yum)
 
 FAQ, Support & Development
 --------------------------
-Feek free to fork the module and extend it in any way, any pull requests will be welcome. Also let me know in case you're interested in some functionality.
+Feel free to fork the module and extend it in any way, any pull requests will be welcome. Also let me know in case you're interested in some functionality.
 Please use Github's Issues for any communication & bug reporting.
 
 TODO
@@ -148,3 +148,4 @@ TODO
 - better passing of args to java class
 - proper modulefile & release to Puppet Forge
 - tests
+- Debian support ;-)
