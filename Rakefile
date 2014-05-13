@@ -32,7 +32,7 @@ task :doc do
   classes.each do |file|
     tmp = File.read("manifests/#{file}.pp")
     tmp = tmp[/(^# # Class.*)# ## Authors/m,1]
-    tmp = tmp.gsub(/^#[[:space:]]?/,'')
+    tmp = tmp.gsub(/^#[[:blank:]]?/,'')
     tmp = tmp.gsub(/^(#+)/,'##\1')
     @doc_classes += tmp
   end
