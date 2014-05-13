@@ -15,16 +15,16 @@
 class openfire::config inherits openfire {
 
   file { '/etc/sysconfig/openfire':
-    ensure => present,
-    content => template("openfire/sysconfig.erb"),
-    owner => "root",
-    group => "root",
-    mode => "644",
+    ensure  => present,
+    content => template('openfire/sysconfig.erb'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
   }
 
-  if ($java_ks != '') {
-    file { "${home}/resources/security/keystore":
-      ensure => $java_ks,
+  if ($openfire::java_ks != '') {
+    file { "${openfire::home}/resources/security/keystore":
+      ensure => $openfire::java_ks,
     }
   }
 

@@ -32,7 +32,7 @@
 # - options: true, false
 # Whether the module should try to install java, if enabled, Puppetlab's
 # java module will have to be installed. Defaults to false, as jre bundled
-# within RPM package is prefered. 
+# within RPM package is prefered.
 #
 # ### java_xms
 # - default: 256m
@@ -52,10 +52,10 @@
 # `-X` such as `-XlargePages`.
 #
 # ### java_home
-# - default: 
+# - default:
 # - options: absolute path in the filesystem
 # Java home directory passed to init script, by default it's empty and
-# init script tries to use one bundled with RPM package which is located in 
+# init script tries to use one bundled with RPM package which is located in
 # `/opt/openfire/jre`.
 #
 # ### java_keystore
@@ -77,7 +77,7 @@
 # ### ensure
 # - default: present
 # - options: present, absent
-# If set to absent, module will try to cleanup after itself and removed 
+# If set to absent, module will try to cleanup after itself and removed
 # any resources installed.
 # created on the system.
 #
@@ -147,9 +147,9 @@ class openfire (
   $service_ensure  = $openfire::params::service_ensure,
   $user            = $openfire::params::user,
   $group            = $openfire::params::group,
- 
+
 ) inherits openfire::params {
- 
+
   validate_bool($service_manage)
   validate_bool($service_enable)
   validate_bool($install_java)

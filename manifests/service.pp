@@ -14,11 +14,11 @@
 
 class openfire::service inherits openfire {
 
-  if $service_manage == true {
+  if $openfire::service_manage == true {
     service { 'openfire':
-      ensure  => $service_ensure,
-      enable  => $service_enable,
-      hasstatus => true,
+      ensure     => $openfire::service_ensure,
+      enable     => $openfire::service_enable,
+      hasstatus  => true,
       hasrestart => true,
     }
   }

@@ -14,29 +14,29 @@
 
 class openfire::install inherits openfire {
 
-  if $install_java == true {
+  if $openfire::install_java == true {
     class{'java':
       before => Package['openfire']
     }
   }
 
-  if $install_glibc == true {
-    package { "glibc.i686":
-      ensure => "installed",
+  if $openfire::install_glibc == true {
+    package { 'glibc.i686':
+      ensure => installed,
       before => Package['openfire']
     }
   }
 
   package { 'openfire':
-    ensure => $my_package_ensure,
-    name   => $package_name,
+    ensure => $openfire::my_package_ensure,
+    name   => $openfire::package_name,
   } ->
 
-  file { $logdir:
+  file { $openfire::logdir:
     ensure => directory,
-    owner   => $user,
-    group  => $group,
-    mode   => 0644
+    owner  => $openfire::user,
+    group  => $openfire::group,
+    mode   => '0644'
   }
 
 }
