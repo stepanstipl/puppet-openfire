@@ -40,4 +40,4 @@ task :doc do
   File.open('README.md', 'w').write(renderer.result)
 end
 
-task :default => [:validate, :lint, :spec]
+task :default => [:doc, :validate, :lint, :spec]
